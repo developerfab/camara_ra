@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<device type="media" onchange="update(this.data)"></device>
+	<video autoplay></video>
+	<script type="text/javascript">
+	var video = document.querySelector('video');
+	function fallback(e) {
+		
+	  	video.src = 'fallbackvideo.webm';
+	}
+
+	function success(stream) {
+	  video.src = window.URL.createObjectURL(stream);
+	}
+
+	if (!navigator.getUserMedia) {
+	  fallback();
+	} else {
+	  navigator.getUserMedia({video: true}, success, fallback);
+	}
+	</script>
+</body>
+</html>
